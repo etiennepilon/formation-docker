@@ -23,3 +23,13 @@
     3. Vous devriez avoir une nouvelle image.
 3. Regardons ce qui a changé: `docker container ls -a`
     4. Vous devriez avoir un nouveau container qui a un status arrêté.
+4. Plusieurs interactions avec les containers sont possibles.
+    1. Afin de réutiliser un container local: `docker start --attach <contained_name/id>`
+    2. Afin d'arrêter un container: `docker stop <container_name/id>`
+    3. Afin d'effacer le container local: `docker rm <contained_name/id>`
+    4. Afin de lister tous les processus actifs `docker ps`
+
+## Nettoyage
+1. Trouver l'id du container hello-world avec la commande `docker ps -a`
+2. Effacer le container: `docker rm <contained_name/id>`
+3. Effacer les images non utilisées par des container `docker image prune -a` 
