@@ -1,6 +1,6 @@
-# Déploiement d'une application
+# Déploiement d'une application de base
 > Nous allons déployer une application web de base. Vous trouverez cette
-> [application sur GitHub](https://github.com/etiennepilon/formation-docker/tree/master/src)
+> [application sur GitHub](https://github.com/etiennepilon/formation-docker/tree/master/src/webapp_part1)
 
 ## Sans Docker
 1. Démonstration du deploiement de l'application sans Docker
@@ -67,3 +67,78 @@
     1. Si vous voulez effacer le container: `docker-compose down`
     2. Si vous voulez garder le container `docker-compose stop`
 
+# Déploiement d'une application avec données persistentes
+> Nous allons maintenant déployer une application web similaire à la précédente mais cette fois avec données persistentes. Vous trouverez cette
+> [application sur GitHub](https://github.com/etiennepilon/formation-docker/tree/master/src/webapp_part2)
+
+## Création de l'image
+1. Nous allons réutiliser exactement le même fichier `docker-compose.yml`
+    1. Un seul ajout c'est glissé afin de faciliter la suite du tutoriel. Vous
+       remarquerez que l'entrée `image: etiennepilon/tutoriel-docker` c'est
+       ajouter au fichier.
+3. Comme vous l'avez déjà fait, compiler l'image mais cette fois, avec `docker-compose build`.
+    1. Vous pouvez valider que l'image existe bien avec `docker image ls`
+4. Maintenant, vous pouvez simplement éxecuter la commande `docker-compose up webapp`
+5. Vous pouvez maintenant naviguer à l'adresse `http://127.0.0.1:8800`.
+6. Vous pouvez aussi voir le processus Docker avec `docker ps`
+
+### Ajout de membre dans l'application
+7. Via le menu `Add Member` dans l'application, ajouter des membres au tableau.
+   Idéalement
+
+## Confirmation de l'écriture des données et exploration d'une container
+1. L'application sauvegarde sur le disque les noms des nouveaux membres. Dans le
+   cas de cette application, les données sont sauvegardés dans un fichier JSON.
+   Par contre, nous aurions pu utiliser quelconque base de données (SQL,
+   PostGres, etc.) Le fichier `members.json` se trouve simplement dans le
+   dossier `data/`.
+2. Jusqu'à maintenant, nous n'avons pas exploré nos containers. Allons voir si
+   les données sont belle et bien écrites sur le disque.
+3. Afin de vous connecter au container, vous devez tout d'abord vous assurez
+   qu'il roule. Roulez `docker ps`
+4. Ensuite, nous ouvrirons un shell Bash au container. C'est l'équivalent
+   d'utiliser le "système d'opération" du container.
+   1. Roulez la commande `docker run -it etiennepilon/tutoriel-docker`
+   2. Vous êtes maintenant connecté. Vous pouvez retrouver tous les fichiers
+      avec lesquels nous travaillons. Confirmez avec `ls`.
+   3. Ensuite, nous irons voir le contenu du fichier `members.json`. La façon la
+      plus simple est d'afficher directement son contenu avec la commande `cat
+      data/members.json
+   4. Il n'y a rien..!
+   5. Quitter le shell bash simplement avec `CTRL+D`
+5. On constate que les données ne sont pas écrite sur le disque, c'est un
+   problème.
+
+## Redémarrage du Container
+1. Arrêtons le container avec la commande `docker-compose down`
+2. Redémarrons le container avec la commande `docker-compose up webapp`. Comme vous
+   voyez en accédant à la route `/table`, il n'y a plus aucun membres qui avait
+   été ajouté préalablement.
+
+## Création d'un Volume
+1. Docker ne garde aucune donnée persistente. Un container maintien toujours
+   son état sur le Disque et "copie" l'image sur laquelle il est basée.
+2. Pour résoudre cette problématique, nous allons ajouter un Volume. Un Volume
+   est l'équivalent de "mount" un disque dur ou une partition sur un ordinateur.
+   Il nous donne accès en lecture et écriture à ce disque.
+3. Dans notre cas, nous allons "mount" un dossier de notre ordinateur dans notre
+   container afin qu'il puisse y lire/écrire.
+   1. Ouvrez `docker-compose.yml` dans un éditeur de texte ou IDE.
+   2. Dans la section webapp, ajouter une sous-section `volumes` ainsi:
+   ```
+    volumes:
+        -./data:/usr/src/app/data
+   ```
+   3. Ce code aura pour effet de lier le dossier `data` local au dossier du
+      container `/usr/src/app/data`. Ce dossier est où l'application écrit son
+      fichier JSON.
+   4. Sauvegarder le fichier.
+
+## Création de l'image avec le nouveau Volume et validation de la solution
+1. Il ne reste plus qu'à rebâtir l'image `docker-compose build` et la reéxecuter
+   avec `docker-compose up webapp`.
+2. Via le menu `Add Member` dans l'application, ajouter des membres au tableau.
+3. Validons que l'écriture se fait simplement en regardant local du fichier
+   `data/members.json`
+4. Nous constatons donc qu'il est possible de maintenir des données
+   persistentes dans un container qui écrit directement sur notre disque!
