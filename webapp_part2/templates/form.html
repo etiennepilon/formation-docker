@@ -1,0 +1,18 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Docker Tutorial</title>
+  </head>
+  <body>
+    {% extends "template.html" %}
+    {% block content %}
+        <h1> Form to add a new member to the training </h1> 
+        <form class="form" autocomplete="off" spellcheck="false" method="POST">
+            <label for="name">Add a new member:</label>
+            <input type="text" class="form-control" autofocus="autofocus" id="answer" name="answer">
+        </form>
+    
+    {% endblock %}
+  </body>
+</html>
+

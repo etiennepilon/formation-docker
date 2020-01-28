@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    webapp:
+        build: .
+        image: etiennepilon/tutoriel-docker
+        ports:
+            - 127.0.0.1:8800:5000
+        environment:
+            - HOSTNAME=0.0.0.0
+

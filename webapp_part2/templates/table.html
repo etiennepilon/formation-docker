@@ -1,0 +1,30 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Docker Tutorial</title>
+  </head>
+  <body>
+    {% extends "template.html" %}
+    {% block content %}
+
+
+    <h1>List of Members </h1>
+    
+    <table>
+    <thead><tr><th>ID</th><th>Name</th></tr></thead>
+    <tbody>
+	{% for row in rows %}
+    <tr>
+        <td>{{ row.id }}</a></td>
+        <td>{{ row.name }}</td>
+    </tr>
+
+    {% endfor %}
+    </tbody>
+    </table>
+   
+
+    {% endblock %}
+  </body>
+</html>
+
