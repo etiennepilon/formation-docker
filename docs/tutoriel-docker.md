@@ -1,6 +1,5 @@
 # Déploiement d'une application de base
-> Nous allons déployer une application web de base. Vous trouverez cette
-> [application sur GitHub](https://github.com/etiennepilon/formation-docker/tree/master/src/webapp_part1)
+> Nous allons déployer une application web de base. Vous trouverez cette dans le répertoire github.
 
 ## Sans Docker
 1. Démonstration du deploiement de l'application sans Docker
@@ -68,8 +67,7 @@
     2. Si vous voulez garder le container `docker-compose stop`
 
 # Déploiement d'une application avec données persistentes
-> Nous allons maintenant déployer une application web similaire à la précédente mais cette fois avec données persistentes. Vous trouverez cette
-> [application sur GitHub](https://github.com/etiennepilon/formation-docker/tree/master/src/webapp_part2)
+> Nous allons maintenant déployer une application web similaire à la précédente mais cette fois avec données persistentes. Vous trouverez cette dans ce répertoire Github.
 
 ## Création de l'image
 1. Nous allons réutiliser exactement le même fichier `docker-compose.yml`
