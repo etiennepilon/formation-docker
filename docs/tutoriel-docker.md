@@ -28,7 +28,8 @@
 4. Une fois que l'image est compiler, valider qu'elle se trouve sur votre
    système avec `docker image ls`
 5. Déployer un container avec l'image nouvellement créé `docker run -p 127.0.0.1:8800:5000 -e HOSTNAME="0.0.0.0" docker-basic-webapp`
-    6. Ici, remarquer que lorsque je roule le container, j'utilise l'option -p. Cette option permet de spécifier le port sur lequel l'application va
+    
+    1. Ici, remarquer que lorsque je roule le container, j'utilise l'option -p. Cette option permet de spécifier le port sur lequel l'application va
        rouler. Cela très facile de faire des configurations dans ce cas.
 6. Naviguer dans votre navigateur à l'adresse: `http://127.0.0.1:8800/`
     7. Voilà! Nous avons déployé notre premier container localement. Maintenant, nous n'avons plus besoin de documenter notre environnement.
@@ -140,3 +141,19 @@
    `data/members.json`
 4. Nous constatons donc qu'il est possible de maintenir des données
    persistentes dans un container qui écrit directement sur notre disque!
+
+
+## Exercise de fin de présentation
+
+1. Déployer une application localement SANS installer aucune dépendance sur
+   votre machine.
+   2. Vous pouvez choisir quelconque application que vous voulez.
+   3. Celle proposé sera un template de site web qui se trouve
+      [ici](https://github.com/cosmicjs/react-website-boilerplate).
+2. Quelques étapes pour vous démarrer:
+    1. Vous devez `git clone` le répertoire localement
+    2. Vous devez créer un Dockerfile qui devra:
+        1. Démarrer d'une image existante ayant les dépendances nécessaires
+           (ex.: FROM node)
+        2. Ensuite compléter le Dockerfile et simplement faire docker build ...
+           comme vu lors de la formation!
