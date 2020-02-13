@@ -145,6 +145,30 @@
 
 ## Exercise de fin de présentation
 
+### Exercise 1
+1. Déployer localement l'image de Wordpress se trouvant sur [Docker Hub](https://hub.docker.com/_/wordpress).
+    1. N'apportez aucune modification à l'image WordPress
+	2. Démarrer l'image en spécifiant le port avec `-p 5050:80`
+	3. Vérifier que Wordpress roule réellement à l'addresse 127.0.0.1:5050
+	4. Problème, nous n'avons pas de database!
+2. Stopper le container.
+
+### Exercise 2
+1. Déployer localement l'image de MySQL se trouvant sur [Docker Hub](https://hub.docker.com/_/mysql)
+2. Vérifiez que le container roule avec `docker ps`
+
+### Exercise 3
+1. Faites communiquer les deux containers. *Important*: Quelques sujets n'ont pas été abordés afin d'être capable
+de faire ceci. Notamment, le concept de Network. Afin de faciliter cette étape, vous devrez utiliser `docker-compose`
+afin de déployer le tout. Le fichier est fournit dans le répertoire Github.
+2. Faites les modifications requises du fichier docker-compose.yml dans le répertoire exercise-wordpres
+3. Ensuite, utiliser une commande docker-compose afin de démarrer le tout.
+4. Valider maintenant que vous avez accès à votre site web à l'addresse que vous avez choisie.
+
+### Exercises supplémentaire
+1. Utiliser un Volume afin de changer les thèmes de Wordpress.
+
+### Exercise Supplémentaire
 1. Déployer une application localement SANS installer aucune dépendance sur
    votre machine.
    2. Vous pouvez choisir quelconque application que vous voulez.
