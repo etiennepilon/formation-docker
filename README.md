@@ -7,6 +7,6 @@
 
 ## Plan de la formation
 1. Présentation des concepts de bases
-2. [Initiation et installation Docker](../initiation-docker.md)
-3. [Tutoriel interactif et exercies](../tutoriel-docker.md)
+2. [Initiation et installation Docker](docs/initiation-docker.md)
+3. [Tutoriel interactif et exercies](docs/tutoriel-docker.md)
 4. Limitations de Docker et piste de réflexion
